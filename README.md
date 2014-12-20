@@ -9,7 +9,7 @@
 - tag whitelist for the actual NEW YEAR
 - much better handling of image loading (preload the gif BEFORE displaying it) - no lag!
 
-**[Demo!]()**
+**[Demo!](http://damienalexandre.github.io/new-year-gif-wall-countdown)**
 
 ## Usage
 
