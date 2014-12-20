@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="./jquery.countdown.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Codystar' rel='stylesheet' type='text/css'>
+  <title>New Year Countdown with gifs</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    body {
+      background-color: #000;
+      width: 100%;
+      height: 100%;
+      color:white;
+    }
+    #gif {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 80%;
+      position: fixed;
+      background-repeat: no-repeat;
+      background-position: center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+    
+    #countdown {
+      font-family: 'Codystar', cursive;
+      text-align: center;
+      font-size: 100px;
+      position: absolute;
+      top:80%;
+      width:100%;
+    }
+    
+    #preloadArea {
+      display:none;
+    }
+  </style>
+</head>
+
+<body>
+    <div id="gif">
+    </div>
+    
+    <div id="countdown">
+    </div>
+    
+    <img id="preloadArea" />
+    
+<script type="text/javascript">
+    var interval;
+    var preloadArea = $('#preloadArea');
+    
+    var tagWhitelist = [
+      "nyancat",
+      "computer",
+      "doge",
+      "party",
+      "magic",
+      "poney",
+      "unicorn",
+      "explosion",
+      "hipster",
+      "mermaid",
+      "jesus",
+      "chutulu",
+      "drugs"
+    ];
+    
+    var newYearTagList = [
+      "fireworks"
+      //"newyear"
+    ];
+    
+    preloadArea.load(function() {
+      $('#gif').css('background-image', 'url(' + $(this).attr('src') + ')');    
+      
+      interval = setTimeout(slideshow, 9000);
+    });
+
+    function slideshow() {
+        var tag = tagWhitelist[Math.floor(Math.random()*tagWhitelist.length)];
+      
+        $.support.cors = true;
+        $.getJSON("https://api.giphy.com/v1/gifs/tv?api_key=CW27AW0nlp5u0&tag="+tag, null, function(response) {
+            if (response.data.image_original_url.length > 0) {
+                var image = response.data.image_original_url;
+                preloadArea.attr('src', image);
+            } else {
+                slideshow();
+            }
+        }).error(function(jqXHR, textStatus, e) { 
+            console.log(e); 
+            slideshow();
+        });
+    };
+    
+    slideshow();
+    
+    $('#countdown').countdown("2015/01/01", function(event) {
+        if (event.type === 'finish') {
+            tagWhitelist = newYearTagList;
+            $(this).text('HAPPY NEW YEAR!!!');
+        } else {
+            $(this).text(
+                event.strftime('%H:%M:%S')
+            );
+        }
+    });
+  </script>
+
+</body>
+</html>
