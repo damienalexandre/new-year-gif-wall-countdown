@@ -93,7 +93,7 @@
       
         $.support.cors = true;
         $.getJSON("https://api.giphy.com/v1/gifs/tv?api_key=CW27AW0nlp5u0&tag="+tag, null, function(response) {
-            if (response.data.image_original_url.length > 0) {
+            if (typeof response.data.image_original_url !== 'undefined' && response.data.image_original_url.length > 0) {
                 var image = response.data.image_original_url;
                 preloadArea.attr('src', image);
             } else {
