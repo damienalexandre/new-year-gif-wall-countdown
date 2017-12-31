@@ -42,6 +42,15 @@
       width:100%;
       text-shadow: 0px 0px 7px #000000;
     }
+      #tag {
+      font-family: 'Share Tech Mono', monospace;
+      text-align: center;
+      font-size: 20px;
+      position: absolute;
+      top:90%;
+      width:30%;
+      text-shadow: 0px 0px 7px #000000;
+    }
     
     #preloadArea {
       display:none;
@@ -55,10 +64,12 @@
 	
     <div id="countdown">
     </div>
+    <div id="tag">
+    </div>
     <img id="preloadArea" />
     
 <script type="text/javascript">
-    var interval;
+    var interval,tag;
     var preloadArea = $('#preloadArea');
     
     var tagWhitelist = [
@@ -73,10 +84,11 @@
       $('#gif').css('background-image', 'url(' + $(this).attr('src') + ')');    
       
       interval = setTimeout(slideshow, 9000);
+      $('#tag').text('#'+tag);
     });
 
     function slideshow() {
-        var tag = tagWhitelist[Math.floor(Math.random()*tagWhitelist.length)];
+        tag = tagWhitelist[Math.floor(Math.random()*tagWhitelist.length)];
       
         $.support.cors = true;
         $.getJSON("https://api.giphy.com/v1/gifs/tv?api_key=CW27AW0nlp5u0&tag="+tag, null, function(response) {
