@@ -58,31 +58,11 @@
     var preloadArea = $('#preloadArea');
     
     var tagWhitelist = [
-      "90s",
-      "spice girls",
-      "fresh prince",
-      "dragon ball z",
-      "pokemon",
-      "chirac",
-      "2b3",
-      "gala",
-      "nirvana", "gsquad", "minikeum", "razmoket", "backstreet boyz", "take that", "hanson", "world apart", 
-      "hey arnold", "rambo", "gremlins", "will smith", "goonies", "A team", "power rangers", "ninja turtles",
-      "yoyo", "jojos"
+      "celebration", "dance", "friendship", "unicorn", "happy", "yolo"
     ];
     
     var newYearTagList = [
-      "90s",
-      "spice girls",
-      "fresh prince",
-      "dragon ball z",
-      "pokemon",
-      "chirac",
-      "2b3",
-      "gala",
-      "nirvana", "gsquad", "minikeum", "razmoket", "backstreet boyz", "take that", "hanson", "world apart", 
-      "hey arnold", "rambo", "gremlins", "will smith", "goonies", "A team", "power rangers", "ninja turtles",
-      "yoyo", "jojos"
+      "fireworks", "2018", "celebration", "drunk", "dance", "champagne"
     ];
     
     preloadArea.load(function() {
@@ -110,7 +90,7 @@
     
     slideshow();
     
-    $('#countdown').countdown("2016/01/01", function(event) {
+    $('#countdown').countdown("2018/01/01", function(event) {
         if (event.type === 'finish') {
             tagWhitelist = newYearTagList;
             $(this).text('HAPPY NEW YEAR!!!');
